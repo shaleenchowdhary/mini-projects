@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+}
+
+.photoSliderImage {
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    border: 10px solid rgb(103, 103, 103);
+    border-radius: inherit;
+}
+
+.photoSliderButton {
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px, rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+    position: absolute;
+    bottom: 100px;
+}
+
+.photoSliderButton:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.photoSliderButton:hover {
+    box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px, rgba(45, 35, 66, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.photoSliderButton:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.sliderButtons {
+    position: absolute;
+    top: 100px;
+    right: 350px;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.sliderDotButton {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.info {
+    position: absolute;
+    top: 200px;
+    left: 350px;
+    width: 350px;
+}
+
+.info p,
+h2 {
+    color: black;
+}
+
+.info p {
+    font-size: 15px;
+    font-weight: 500;
+}
