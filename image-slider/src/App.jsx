@@ -1,4 +1,5 @@
 import './App.css';
+import Counter from './Counter';
 import PhotoSlider from './PhotoSlider';
 import pic1 from './assets/images/pic1.jpg';
 import pic2 from './assets/images/pic2.jpg';
@@ -18,7 +19,8 @@ function App() {
           margin: 'auto',
         }}
       >
-        <PhotoSlider photos={photos}></PhotoSlider>
+        {/* <PhotoSlider photos={photos}></PhotoSlider> */}
+        <Counter />
       </div>
     </>
   );
