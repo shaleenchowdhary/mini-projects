@@ -6,19 +6,69 @@ export default function App() {
       <h1 className="text-3xl font-bold underline text-teal-700 mb-4 text-center">
         Tic Tac Toe
       </h1>
-      <Board />
+      <Game />
     </>
   );
 }
 
-function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
+function Game() {
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  }
+
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+  }
+
+  const moves = history.map((squares, move) => {
+    let description;
+    if (move > 0) {
+      description = 'Go to move #' + move;
+    } else {
+      description = 'Go to game start';
+    }
+    return (
+      <li key={move}>
+        <button
+          className="px-1 bg-slate-200 rounded border-2 border-gray-400 mt-2"
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
+      </li>
+    );
+  });
+
+  return (
+    <>
+      <div>
+        <div>
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            onPlay={handlePlay}
+          />
+        </div>
+        <div className="game-info">
+          <ol className="list-decimal">{moves}</ol>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   winner
-    ? (status = 'Winner ' + winner)
+    ? (status = 'Winner is ' + winner)
     : (status = 'Next player: ' + (xIsNext ? 'X' : 'O'));
 
   function handleClick(i) {
@@ -27,8 +77,7 @@ function Board() {
     }
     const nextSquares = squares.slice();
     xIsNext ? (nextSquares[i] = 'X') : (nextSquares[i] = 'O');
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   return (
